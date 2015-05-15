@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"     
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Create ProjectX</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form>
+                <h3 style="margin-top:0">Arbol</h3>
+
+                <p:growl id="msgs" showDetail="true" escape="false"/>
+
+                <p:tree value="#{treeBasicView.root}" var="node" 
+                        selectionMode="checkbox"
+                        orientation="horizontal"
+                        selection="#{treeBasicView.selectedNode}">
+
+                    <p:treeNode>
+                        <h:outputText value="#{node}"/>
+                    </p:treeNode>
+                </p:tree>
+
+                <p:commandButton value="Display" update="msgs" icon="ui-icon-newwin"
+                                 actionListener="#{treeBasicView.displaySelectedMultiple(treeBasicView.selectedNode)}"/>
+           
+
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

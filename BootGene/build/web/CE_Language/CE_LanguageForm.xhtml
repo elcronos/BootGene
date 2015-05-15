@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!--
+	PROYECTO:ConversationExchange
+	ABREVIATURA:CE
+	DESCRIPCION:Plataforma para el intercambio de idiomas
+	FORMULARIO:Language
+	DESCRIPCION FORMULARIO:Nombre del lenguaje
+-->
+<f:view contentType="text/html">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css"/>
+<f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	<title>CE_Language</title>
+</f:facet>
+</h:head>
+<h:body>
+
+<!--*******************************FORM - CREATE*******************************-->
+<h:form id="form">
+<p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+<f:facet name="header">
+	Nuevo CE_Language
+</f:facet>
+
+<h:outputLabel for="LanguageInput" value="Language :" />
+<h:inputText id="LanguageInput" value="#{CE_LanguageModel.Language}" required="true"/>
+
+</p:panelGrid>
+<p:commandButton ajax="false" update="dataTable" value="Nuevo">
+<f:actionListener binding="#{CE_LanguageModel.insert()}"/>
+<f:actionListener binding="#{CE_LanguageController.render()}"/>
+</p:commandButton>
+</h:form>
+<!--**************************************************************-->
+<h:form id="table">
+                     <p:dataTable id="dataTable" var="list" value="#{CE_LanguageController.listCE_Language}" style="font-size: 14px"
+                       emptyMessage="Lista Vacia"
+                       paginator="true" rows="10"
+                       scrollHeight="10"
+                       editable="true"
+                             >
+                    <f:facet name="header">
+                       CE_Language
+                    </f:facet>
+<!--******************************** COLUMNS ***************************-->
+<p:column headerText="Language" filterBy="Language" sortBy="Language">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.Language}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.Language}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+
+<p:column headerText="Editar">
+                            <p:rowEditor/>   
+                        </p:column>
+                        <p:column headerText="Eliminar">
+                            <p:commandButton ajax="false" update="@this" icon="ui-icon-close">
+                                <f:setPropertyActionListener value="#{list}" target="#{CE_LanguageController.selected}" />
+                                <f:actionListener binding="#{CE_LanguageController.delete()}"/>
+                                <f:actionListener binding="#{CE_LanguageController.render()}"/>
+                            </p:commandButton>
+                        </p:column><!-- AJAX-->
+                        <p:ajax event="rowEdit"  listener="#{CE_LanguageController.onEdit}"/>
+                        <p:ajax event="rowEditCancel" listener="#{CE_LanguageController.onCancel}"/>
+
+                        <f:facet name="footer">
+                            En total hay  <h:outputText value="#{CE_LanguageController.size}"/> CE_Language(s).
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+
+
+</h:body>
+</f:view>
+</html>

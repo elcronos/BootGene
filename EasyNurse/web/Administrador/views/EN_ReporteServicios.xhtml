@@ -1,0 +1,167 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!--
+            PROYECTO:EasyNurse
+            ABREVIATURA:EN
+            DESCRIPCION:EasyNurse
+            FORMULARIO:ConsultaServicio
+            DESCRIPCION FORMULARIO:  
+    -->
+    <f:view contentType="text/html">
+        <h:head>
+
+            <f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Consulta Servicio</title>
+            </f:facet>
+
+        </h:head>
+        <h:body>
+            <h4 class="media-heading text-large">
+                    Reporte Servicios
+            </h4>
+            <h:form>
+                <p:dataTable id="dataTable" var="list" value="#{EN_ServicioController.listEN_Servicio}" style="font-size: 14px"
+                             emptyMessage="Lista Vacia"
+                             paginator="true" rows="10"
+                             scrollHeight="10"
+                             editable="true"
+                             reflow="true"
+                             >
+                    <f:facet name="header">
+                        Servicios
+                    </f:facet>
+                    <!--******************************** COLUMNS ***************************-->
+                    <p:column headerText="Fecha Creacion" filterBy="fechacreacion" sortBy="fechacreacion">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.fechacreacion}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:calendar value="#{list.fechacreacion}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Fecha Servicio" filterBy="fechaservicio" sortBy="fechaservicio">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.fechaservicio}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:calendar value="#{list.fechaservicio}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Tipo Servicio" filterBy="tiposervicio" sortBy="tiposervicio">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.tiposervicio}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{list.tiposervicio}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Jornada" filterBy="jornada" sortBy="jornada">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.jornada}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{list.jornada}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Direccion" filterBy="direccion" sortBy="direccion">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.direccion}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{list.direccion}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Observaciones" filterBy="observaciones" sortBy="observaciones">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.observaciones}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputTextarea value="#{list.observaciones}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Estado Novedad" filterBy="estadonovedad" sortBy="estadonovedad">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.estadonovedad}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{list.estadonovedad}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Diagnostico" filterBy="diagnostico" sortBy="diagnostico">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.diagnostico}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputTextarea value="#{list.diagnostico}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Paciente" filterBy="fkpaciente" sortBy="fkpaciente">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{list.fkpaciente}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{list.fkpaciente}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Enfermera" filterBy="idenfermera" sortBy="idenfermera">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{EN_EnfermeraModel.nombrecomple}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{list.idenfermera}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+
+                   
+                    <f:facet name="footer">
+                        En total hay  <h:outputText value="#{EN_ServicioController.size}"/> EN_Servicio(s).
+                    </f:facet>
+                </p:dataTable>
+                
+                <p:commandButton value="Exportar Excel" ajax="false" >
+                    <p:dataExporter type="xls" target="dataTable" fileName="servicios"/>
+                </p:commandButton>
+                <p:commandButton value="Exportar PDF" ajax="false" >
+                    <p:dataExporter type="pdf" target="dataTable" fileName="servicios"/>
+                </p:commandButton>
+            </h:form>          
+
+        </h:body>
+    </f:view>
+
+</html>
+

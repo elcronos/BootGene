@@ -1,0 +1,171 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!--
+            PROYECTO:EasyNurse
+            ABREVIATURA:EN
+            DESCRIPCION:EasyNurse
+            FORMULARIO:Enfermera
+            DESCRIPCION FORMULARIO:Información de la Enfermera o Auxiliar.
+    
+            Incluyendo información como:
+    
+            -Número de Cuenta Bancaria
+            -Nombre del Banco
+            -Tipo Cuenta(Ahorro/Corriente)
+            -Ciudad
+            -Fecha de Operación
+    -->
+    <f:view contentType="text/html">
+        <h:head>
+
+            <f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Enfermera</title>
+            </f:facet>
+            
+        </h:head>
+        <h:body>
+
+            <!--*******************************FORM - CREATE*******************************-->
+            <h:form id="form">
+                <p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+                    <f:facet name="header">
+                        Nueva Enfermera
+                    </f:facet>
+
+                    <h:outputLabel for="nombreCompleInput" value="Nombre Completo :" />
+                    <h:inputText id="nombreCompleInput" value="#{EN_EnfermeraModel.nombrecomple}" required="true"/>
+
+
+                    <h:outputLabel for="numeDocuInput" value="Nit o C.C :" />
+                    <h:inputText id="numeDocuInput" value="#{EN_EnfermeraModel.numedocu}" required="true"/>
+
+
+                    <h:outputLabel for="ciudadInput" value="Ciudad :" />
+                    <h:inputText id="ciudadInput" value="#{EN_EnfermeraModel.ciudad}" required="true"/>
+
+
+                    <h:outputLabel for="fechaInput" value="Fecha :" />                   
+                     <p:calendar mask="99/99/9999" navigator="true" locale="es" pattern="dd/MM/yyyy" id="fechaInput" 
+                                 value="#{EN_EnfermeraModel.fecha}" required="true"/>
+
+                    <h:outputLabel for="numeCeluInput" value="Numero Celular :" />
+                    <p:inputMask mask="(999) 999-9999" id="numeCeluInput" value="#{EN_EnfermeraModel.numecelu}" required="false"/>
+
+
+                    <h:outputLabel for="correoInput" value="Correo :" />
+                    <h:inputText id="correoInput" value="#{EN_EnfermeraModel.correo}" required="false"/>
+
+
+                    <h:outputLabel for="tipoCuentaInput" value="Tipo Cuenta :" />
+                    <h:selectOneMenu id="tipoCuentaInput" value="#{EN_EnfermeraModel.tipocuenta}" disabled="false">
+                        <f:selectItems value="#{EN_EnfermeraModel.comboCuenta}" />                        
+                    </h:selectOneMenu>
+
+                    <h:outputLabel for="numeroCuentaInput" value="Numero Cuenta :" />
+                    <h:inputText id="numeroCuentaInput" value="#{EN_EnfermeraModel.numerocuenta}" required="false"/>
+                    
+                    <h:outputLabel for="nombBancInput" value="Banco:" />
+                    <h:selectOneMenu id="nombBancInput" value="#{EN_EnfermeraModel.nombbanc}" disabled="false">
+                        <f:selectItems value="#{EN_EnfermeraModel.comboBanco}" />                        
+                    </h:selectOneMenu>
+
+                </p:panelGrid>
+                <p:commandButton style="color: white" class="btn btn-primary btn-stroke btn-xs" ajax="false" update="dataTable" value="Agregar">
+                    
+                    <f:actionListener binding="#{EN_EnfermeraModel.insert()}"/>
+                    <f:actionListener binding="#{EN_EnfermeraController.render()}"/>
+                </p:commandButton>
+            </h:form>
+            
+            
+            
+            
+            
+            
+            
+            <!--**************************************************************-->
+            <!--**************************************************************-->
+
+            <div class="heading-buttons border-bottom innerLR">
+                <h4 class="margin-none innerTB pull-left">Lista Enfermeras</h4>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="bg-white border-bottom innerAll">
+                <div class="input-group input-group-sm">
+
+
+                    <h:form>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Nombre <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Nombre</a></li>
+                                            <li><a href="#">Nit o C.C</a></li>
+                                            <li><a href="#">Fecha Nacimiento</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p:inputText class="form-control" value="#{EN_EnfermeraController.enfeBusq}" placeholder="Enfermera ..." />
+
+                                </td>
+                                <td>
+                                    <p:commandButton id="cmb" update="componenteLista" value="Buscar" style="color: white" class="pull-right btn btn-primary btn-stroke btn-xs">
+                                        <f:actionListener binding="#{EN_EnfermeraController.buscaEnfermera()}"/>
+
+                                    </p:commandButton>
+                                    <p:blockUI block="cmb" trigger="cmb">
+                                        Buscando Enfermera...<br />
+                                    </p:blockUI>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </div>
+            </div>
+
+            <ul class="list-group list-group-1 borders-none margin-none">
+                <h:panelGroup id="componenteLista">
+                <ui:repeat  value="#{EN_EnfermeraController.listEN_Enfermera}" var="enfermera">
+                    <li class="list-group-item">
+                        <div class="media innerAll">
+                            <h:form>
+
+                                <p:commandButton value="Consultar" ajax="false" style="color: white" class="pull-right btn btn-primary btn-stroke btn-xs" >
+
+                                    <f:setPropertyActionListener value="#{enfermera}" target="#{EN_EnfermeraController.selected}" />
+                                    <f:actionListener binding="#{nav.goPage('EN_EnfermeraInfo')}"/>
+
+                                </p:commandButton>
+
+                            </h:form>
+
+                            <div class="media-body">
+                                <h5 class="media-heading strong"><h:outputText value="#{enfermera.nombrecomple.toUpperCase()}"/></h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-user"></i> <h:outputText value="#{enfermera.numedocu}"/></li>
+                                    <li><i class="fa fa-calendar"></i> <h:outputText value="#{enfermera.fecha}"/></li>                         
+                                    <li><i class="fa fa-mobile-phone"></i> <h:outputText value="#{enfermera.numecelu}"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ui:repeat>
+                </h:panelGroup>
+
+
+            </ul>
+            <!-- // END PATIENTS LIST -->
+           
+
+        </h:body>
+    </f:view>
+</html>

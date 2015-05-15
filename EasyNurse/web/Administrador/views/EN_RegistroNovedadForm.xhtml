@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!--
+            PROYECTO:EasyNurse
+            ABREVIATURA:EN
+            DESCRIPCION:EasyNurse
+            FORMULARIO:Servicio
+            DESCRIPCION FORMULARIO:Registro de Servicio en el que se asocian enfermeras y pacientes.
+    -->
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>EN_Servicio</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+
+            <!--*******************************FORM - CREATE*******************************-->
+            <h:form id="form">
+                <p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+                    <f:facet name="header">
+                        Nuevo EN_Servicio
+                    </f:facet>
+
+                    <h:outputLabel for="fechacreacionInput" value="Fechacreacion :" />
+                    <p:calendar id="fechacreacionInput" value="#{EN_ServicioModel.fechacreacion}" required="true"/>
+
+
+                    <h:outputLabel for="fechaservicioInput" value="Fechaservicio :" />
+                    <p:calendar id="fechaservicioInput" value="#{EN_ServicioModel.fechaservicio}" required="true"/>
+
+
+                    <h:outputLabel for="tiposervicioInput" value="Tiposervicio :" />
+                    <h:inputText id="tiposervicioInput" value="#{EN_ServicioModel.tiposervicio}" required="true"/>
+
+
+                    <h:outputLabel for="jornadaInput" value="Jornada :" />
+                    <h:inputText id="jornadaInput" value="#{EN_ServicioModel.jornada}" required="true"/>
+
+
+                    <h:outputLabel for="direccionInput" value="Direccion :" />
+                    <h:inputText id="direccionInput" value="#{EN_ServicioModel.direccion}" required="true"/>
+
+
+                    <h:outputLabel for="observacionesInput" value="Observaciones :" />
+                    <h:inputTextarea id="observacionesInput" value="#{EN_ServicioModel.observaciones}" required="false"/>
+
+
+                    <h:outputLabel for="estadonovedadInput" value="Estadonovedad :" />
+                    <h:inputText id="estadonovedadInput" value="#{EN_ServicioModel.estadonovedad}" required="true"/>
+
+
+                    <h:outputLabel for="diagnosticoInput" value="Diagnostico :" />
+                    <h:inputTextarea id="diagnosticoInput" value="#{EN_ServicioModel.diagnostico}" required="false"/>
+
+
+                    <h:outputLabel for="fkpacienteInput" value="Paciente :" />
+                    <h:inputText id="fkpacienteInput" value="#{EN_PacienteController.nombBusq}" required="true">
+                        <p:ajax event="valueChange" update="comboPaciente" listener="#{EN_PacienteController.eventoBuscar()}"/>
+                    </h:inputText>
+                    <h:selectOneMenu id="comboPaciente" value="#{EN_ServicioModel.fkpaciente}" disabled="false">
+                        <f:selectItems value="#{EN_PacienteController.listEN_Paciente}" />                        
+                    </h:selectOneMenu>
+
+                    <h:outputLabel for="idenfermeraInput" value="Enfermera :" />
+                    <h:inputText id="idenfermeraInput" value="#{EN_EnfermeraController.enfeBusq}" required="false">                       
+                        <p:ajax event="valueChange" update="comboEnfermera" listener="#{EN_EnfermeraController.eventoBuscar()}"/>  
+                    </h:inputText>
+                    <h:selectOneMenu id="comboEnfermera" value="#{EN_ServicioModel.idenfermera}" disabled="false">                     
+                        <f:selectItems value="#{EN_EnfermeraController.listEN_Enfermera}" />                          
+                    </h:selectOneMenu>
+                    
+                </p:panelGrid>
+                
+                <p:commandButton  value="Nuevo" update="@form">
+                    <f:actionListener binding="#{EN_ServicioModel.insert()}"/>
+                    <f:actionListener binding="#{EN_ServicioController.render()}"/>
+                </p:commandButton>
+            </h:form>
+           
+
+        </h:body>
+    </f:view>
+</html>

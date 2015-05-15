@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <body>
+        <h:form>
+            <div class="padding-md">
+              
+                        <div class="row m-top-md">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="statistic-box bg-danger m-bottom-md">
+                                    <div class="statistic-title">
+                                        Total de Enfermeras
+                                    </div>
+
+                                    <div class="statistic-value">                                      
+                                        <p:outputLabel value="#{EN_EnfermeraController.size}" />
+                                    </div>
+
+                                    
+                                    <div class="statistic-icon-background">
+                                        <i class="ion-android-social"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="statistic-box bg-info m-bottom-md">
+                                    <div class="statistic-title">
+                                        Total Pacientes
+                                    </div>
+
+                                    <div class="statistic-value">                                      
+                                        <p:outputLabel value="#{EN_PacienteController.size}" />
+                                    </div>
+
+                                  
+                                    <div class="statistic-icon-background">
+                                        <i class="ion-person-add"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="statistic-box bg-purple m-bottom-md">
+                                    <div class="statistic-title">
+                                        Total Servicios - Mes
+                                    </div>
+
+                                    <div class="statistic-value">
+                                        <p:outputLabel value="#{EN_ServicioController.size}" />
+                                    </div>
+                                    <br></br>
+                                    <!--<div class="m-top-md">3% Higher than last week</div>-->
+
+                                    <div class="statistic-icon-background">
+                                        <i class="ion-ios7-cart"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="statistic-box bg-success m-bottom-md">
+                                    <div class="statistic-title">
+                                        Ganancias Estimadas - MES
+                                    </div>
+
+                                    <div class="statistic-value">
+                                        $124.45k
+                                    </div>
+
+                                    <!--<div class="m-top-md">7% Higher than last week</div>-->
+
+                                    <div class="statistic-icon-background">
+                                        <i class="ion-stats-bars"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- ./padding-md -->
+        </h:form>
+        
+    </body>
+</html>
+

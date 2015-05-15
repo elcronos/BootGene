@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<!--
+        PROYECTO:    EasyNurse
+        ABREVIATURA: EN
+        DESCRIPCION: EasyNurse
+        FORMULARIO:  RegistroNovedad
+        DESCRIPCION FORMULARIO: Registro en el que se almacena la información de los pacientes. Incluyendo Diagnostico , turno diurno o nocturno , y el familiar responsable        
+-->
+
+<f:view contentType="text/html">
+        <h:head>
+            <f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>EasyNurse</title>
+            </f:facet>            
+        </h:head>
+        <h:body>
+
+            <!--*******************************FORM - CREATE*******************************-->
+            <h:form id="form">
+                <p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+                    <f:facet name="header">
+                        Nueva Enfermera
+                    </f:facet>
+                    
+                    
+                    <!--  ID  -->
+                    <h:outputLabel for="idInput" value="id :" />
+                    <p:inputMask mask="(999) 999-9999" id="idInput" value="#{RegistroNovedadModelid}" required="true"/>
+
+
+                    
+                    <!--  NOMBRE  -->
+                    <h:outputLabel for="nombreInput" value="nombre :" />
+                    <h:inputText id="nombreInput" value="#{RegistroNovedadModelnombre}" required="true"/>  
+
+
+                    
+                    <!--  APELLIDO  -->
+                    <h:outputLabel for="apellidoInput" value="apellido :" />
+                    <h:inputText id="apellidoInput" value="#{RegistroNovedadModelapellido}" required="true"/>  
+
+
+                    
+                    <!--  NUMEDOCU  -->
+                    <h:outputLabel for="numeDocuInput" value="numeDocu :" />
+                    <h:inputText id="numeDocuInput" value="#{RegistroNovedadModelnumeDocu}" required="true"/>  
+
+
+                    
+                    <!--  EDAD  -->
+                    <h:outputLabel for="edadInput" value="" />
+                    <h:inputText id="edadInput" value="#{RegistroNovedadModeledad}" required="true"/> 
+
+                    
+                    <!--  AUXDIA  -->
+                    <h:outputLabel for="auxDiaInput" value="auxDia :" />
+                    <h:inputText id="auxDiaInput" value="#{RegistroNovedadModelauxDia}" required="false"/>  
+
+
+                    
+                    <!--  AUXNOC  -->
+                    <h:outputLabel for="auxNocInput" value="auxNoc :" />
+                    <h:inputText id="auxNocInput" value="#{RegistroNovedadModelauxNoc}" required="false"/>  
+
+
+                    
+                    <!--  HORA  -->
+                    <h:outputLabel for="horaInput" value="hora :" />
+                    <h:inputText id="horaInput" value="#{RegistroNovedadModelhora}" required="false"/>  
+
+
+                    
+                    <!--  OBSERVACIONES  -->
+                    <h:outputLabel for="observacionesInput" value="observaciones :" />
+                    <h:inputText id="observacionesInput" value="#{RegistroNovedadModelobservaciones}" required="false"/> 
+
+                    
+                    <!--  DIRECCION  -->
+                    <h:outputLabel for="direccionInput" value="direccion :" />
+                    <h:inputText id="direccionInput" value="#{RegistroNovedadModeldireccion}" required="true"/> 
+
+                    
+                    <!--  FECHAINICIO  -->
+                    <h:outputLabel for="fechaInicioInput" value="fechaInicio :" />                   
+                    <p:calendar mask="99/99/9999" navigator="true" locale="es" pattern="dd/MM/yyyy" id="fechaInicioInput" 
+                                 value="#{RegistroNovedadModelfechaInicio}" required="true}"/>
+
+
+                    
+                    <!--  FKFAMILIARRESPONSABLE  -->
+                    <h:outputLabel for="fkFamiliarResponsableInput" value="" />
+                    <h:inputText id="fkFamiliarResponsableInput" value="#{RegistroNovedadModelfkFamiliarResponsable}" required="true"/> 
+
+
+                </p:panelGrid> <!-- ./ panelGrid --> 
+                
+          
+                <p:commandButton id="addRegistroNovedad" style="color: white" class="btn btn-primary btn-stroke btn-xs"  update="componenteLista" value="Agregar">
+                    
+                    <f:actionListener binding=""/>
+                    <f:actionListener binding=""/>
+                </p:commandButton>
+
+                <p:blockUI animate="true" block="addRegistroNovedad" trigger="addRegistroNovedad">
+                      Creando RegistroNovedad...<br />
+                </p:blockUI>
+
+            </h:form> <!-- ./form -->
+            
+            <!--**************************************************************-->
+            <!--**************************************************************-->
+        </h:body> <!-- ./body -->
+    </f:view> <!-- ./view -->
+</html><!-- ./ FIN HTML -->

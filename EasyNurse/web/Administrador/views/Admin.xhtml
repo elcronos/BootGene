@@ -1,0 +1,732 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <meta name="description" content=""/>
+                <meta name="author" content="Camilo Pestana"/>
+                <title>Easy Nurse</title>
+
+                <!-- Bootstrap core CSS -->
+                <link href="#{facesContext.externalContext.requestContextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+                <!-- Font Awesome -->
+                <link href="#{facesContext.externalContext.requestContextPath}/css/font-awesome.min.css" rel="stylesheet"/>
+
+                <!-- ionicons -->
+                <link href="#{facesContext.externalContext.requestContextPath}/css/ionicons.min.css" rel="stylesheet"/>
+
+                <!-- Morris -->
+                <link href="#{facesContext.externalContext.requestContextPath}/css/morris.css" rel="stylesheet"/>	
+
+                <!-- Datepicker -->
+                <link href="#{facesContext.externalContext.requestContextPath}/css/datepicker.css" rel="stylesheet"/>	
+
+                <!-- Animate -->
+                <link href="#{facesContext.externalContext.requestContextPath}/css/animate.min.css" rel="stylesheet"/>
+
+                <!-- Owl Carousel -->
+                <link href="#{facesContext.externalContext.requestContextPath}/css/owl.carousel.min.css" rel="stylesheet"/>
+                <link href="#{facesContext.externalContext.requestContextPath}/css/owl.theme.default.min.css" rel="stylesheet"/>
+
+                <!-- Simplify -->
+                <link href="#{facesContext.externalContext.requestContextPath}/css/simplify.min.css" rel="stylesheet"/>
+
+                <!-- LESS -->
+                <link rel="#{facesContext.externalContext.requestContextPath}/stylesheet/less" href="styles.less" />
+
+
+                <style type="text/css">
+                    #cargando {
+                        width:350px;
+                        height:70px;
+                        clear:both;
+                        background-color:#FFFF00;
+                        color:#CC0000;
+                    }
+                </style>
+            </f:facet>
+        </h:head>
+
+
+        <h:body class="overflow-hidden">
+            <div class="wrapper preload">
+                <div class="sidebar-right">
+                    <div class="sidebar-inner scrollable-sidebar">
+                        <div class="sidebar-header clearfix">
+                            <input class="form-control dark-input" placeholder="Search" type="text"/>
+                            <div class="btn-group pull-right">
+                                <a href="#" class="sidebar-setting" data-toggle="dropdown"><i class="fa fa-cog fa-lg"></i></a>
+                                <ul class="dropdown-menu pull-right flipInV">
+                                    <li><a href="#"><i class="fa fa-circle text-danger"></i><span class="m-left-xs">Busy</span></a></li>
+                                    <li><a href="#"><i class="fa fa-circle-o"></i><span class="m-left-xs">Turn Off Chat</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="title-block">
+                            Group Chat
+                        </div>
+                        <div class="content-block">
+                            <ul class="sidebar-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-circle-o text-success"></i><span class="m-left-xs">Close Friends</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-circle-o text-success"></i><span class="m-left-xs">Business</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="title-block">
+                            Favorites
+                        </div>
+                        <div class="content-block">
+                            <ul class="sidebar-list">
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/profile/profile2.jpg" class="img-circle" alt="user avatar"/>
+                                        <div class="chat-detail m-left-sm">
+                                            <div class="chat-name">
+                                                John Doe
+                                            </div>
+                                            <div class="chat-message">
+                                                Where are you?
+                                            </div>
+                                        </div>
+                                        <div class="chat-status">
+                                            <i class="fa fa-circle-o text-success"></i>
+                                        </div>
+                                        <div class="chat-alert">
+                                            <span class="badge badge-purple bounceIn animation-delay2">2</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/profile/profile3.jpg" class="img-circle" alt="user avatar"/>
+                                        <div class="chat-detail m-left-sm">
+                                            <div class="chat-name">
+                                                Jane Doe
+                                            </div>
+                                            <div class="chat-message">
+                                                Hello
+                                            </div>
+                                        </div>
+                                        <div class="chat-status">
+                                            <i class="fa fa-circle-o text-success"></i>
+                                        </div>
+                                        <div class="chat-alert">
+                                            <span class="badge badge-info bounceIn animation-delay2">1</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/profile/profile4.jpg" class="img-circle" alt="user avatar"/>
+                                        <div class="chat-detail m-left-sm">
+                                            <div class="chat-name">
+                                                John Doe
+                                            </div>
+                                            <div class="chat-message">
+                                                See you again next week.
+                                            </div>
+                                        </div>
+                                        <div class="chat-status">
+                                            <i class="fa fa-circle-o text-danger"></i>
+                                        </div>
+                                        <div class="chat-alert">
+                                            <i class="fa fa-check text-success"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/profile/profile5.jpg" class="img-circle" alt="user avatar"/>
+                                        <div class="chat-detail m-left-sm">
+                                            <div class="chat-name">
+                                                John Doe
+                                            </div>
+                                            <div class="chat-message">
+                                                Hello, Are you there?
+                                            </div>
+                                        </div>
+                                        <div class="chat-status">
+                                            <i class="fa fa-circle-o text-danger"></i>
+                                        </div>
+                                        <div class="chat-alert">
+                                            <i class="fa fa-reply"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="title-block">
+                            More friends
+                        </div>
+                        <div class="content-block">
+                            <ul class="sidebar-list">
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/profile/profile6.jpg" class="img-circle" alt="user avatar"/>
+                                        <div class="chat-detail m-left-sm">
+                                            <div class="chat-name">
+                                                John Doe
+                                            </div>
+                                            <div class="chat-message">
+                                                Where are you?
+                                            </div>
+                                        </div>
+                                        <div class="chat-status">
+                                            <i class="fa fa-circle-o text-success"></i>
+                                        </div>
+                                        <div class="chat-alert">
+                                            <span class="badge badge-success bounceIn animation-delay2">2</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/profile/profile7.jpg" class="img-circle" alt="user avatar"/>
+                                        <div class="chat-detail m-left-sm">
+                                            <div class="chat-name">
+                                                Jane Doe
+                                            </div>
+                                            <div class="chat-message">
+                                                Hello
+                                            </div>
+                                        </div>
+                                        <div class="chat-status">
+                                            <i class="fa fa-circle-o text-success"></i>
+                                        </div>
+                                        <div class="chat-alert">
+                                            <span class="badge badge-danger bounceIn animation-delay2">1</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/profile/profile8.jpg" class="img-circle" alt="user avatar"/>
+                                        <div class="chat-detail m-left-sm">
+                                            <div class="chat-name">
+                                                John Doe
+                                            </div>
+                                            <div class="chat-message">
+                                                See you again next week.
+                                            </div>
+                                        </div>
+                                        <div class="chat-status">
+                                            <i class="fa fa-circle-o text-danger"></i>
+                                        </div>
+                                        <div class="chat-alert">
+                                            <i class="fa fa-check text-success"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/profile/profile9.jpg" class="img-circle" alt="user avatar"/>
+                                        <div class="chat-detail m-left-sm">
+                                            <div class="chat-name">
+                                                John Doe
+                                            </div>
+                                            <div class="chat-message">
+                                                Hello, Are you there?
+                                            </div>
+                                        </div>
+                                        <div class="chat-status">
+                                            <i class="fa fa-circle-o text-danger"></i>
+                                        </div>
+                                        <div class="chat-alert">
+                                            <i class="fa fa-reply"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- sidebar-inner -->
+                </div><!-- sidebar-right -->
+                <header class="top-nav">
+                    <div class="top-nav-inner">
+                        <div class="nav-header">
+                            <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleSM">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <ul class="nav-notification pull-right">
+                                <li>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-lg"></i></a>
+                                    <span class="badge badge-danger bounceIn">1</span>
+                                    <ul class="dropdown-menu dropdown-sm pull-right user-dropdown">
+                                        <li class="user-avatar">
+                                            <img src="images/profile/profile1.jpg" alt="" class="img-circle"/>
+                                            <div class="user-content">
+                                                <h5 class="no-m-bottom">Jane Doe</h5>
+                                                <div class="m-top-xs">
+                                                    <a href="profile.html" class="m-right-sm">Profile</a>
+                                                    <a href="signin.html">Log out</a>
+                                                </div>
+                                            </div>
+                                        </li>	  
+                                        <li>
+                                            <a href="inbox.html">
+                                                Inbox
+                                                <span class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
+                                            </a>
+                                        </li>			  
+                                        <li>
+                                            <a href="#">
+                                                Notification
+                                                <span class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
+                                            </a>
+                                        </li>			  
+                                        <li>
+                                            <a href="#" class="sidebarRight-toggle">
+                                                Message
+                                                <span class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
+                                            </a>
+                                        </li>			  	  
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Setting</a>
+                                        </li>			  	  
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <a href="index.html" class="brand">
+                                <i class="fa fa-heart"></i><span class="brand-name">Easy Nurse</span>
+                            </a>
+                        </div>
+                        <div class="nav-container">
+                            <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleLG">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <ul class="nav-notification">	
+                                <li class="search-list">
+                                    <div class="search-input-wrapper">
+                                        <div class="search-input">
+                                            <input type="text" class="form-control input-sm inline-block"/>
+                                            <a href="#" class="input-icon text-normal"><i class="ion-ios7-search-strong"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="pull-right m-right-sm">
+                                <div class="user-block hidden-xs">
+                                    <a href="#" id="userToggle" data-toggle="dropdown">
+                                        <img src="images/profile/profile1.jpg" alt="" class="img-circle inline-block user-profile-pic"/>
+                                        <div class="user-detail inline-block">
+                                            Jane Doe
+                                            <i class="fa fa-angle-down"></i>
+                                        </div>
+                                    </a>
+                                    <div class="panel border dropdown-menu user-panel">
+                                        <div class="panel-body paddingTB-sm">
+                                            <ul>
+                                                <li>
+                                                    <a href="profile.html">
+                                                        <i class="fa fa-edit fa-lg"></i><span class="m-left-xs">My Profile</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="inbox.html">
+                                                        <i class="fa fa-inbox fa-lg"></i><span class="m-left-xs">Inboxes</span>
+                                                        <span class="badge badge-danger bounceIn animation-delay3">2</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="signin.html">
+                                                        <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">Sign out</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="nav-notification">
+                                    <li>
+                                        <a href="#" data-toggle="dropdown"><i class="fa fa-envelope fa-lg"></i></a>
+                                        <span class="badge badge-purple bounceIn animation-delay5 active">2</span>
+                                        <ul class="dropdown-menu message pull-right">
+                                            <li><a>You have 4 new unread messages</a></li>					  
+                                            <li>
+                                                <a class="clearfix" href="#">
+                                                    <img src="images/profile/profile2.jpg" alt="User Avatar"/>
+                                                    <div class="detail">
+                                                        <strong>John Doe</strong>
+                                                        <p class="no-margin">
+                                                            Lorem ipsum dolor sit amet...
+                                                        </p>
+                                                        <small class="text-muted"><i class="fa fa-check text-success"></i> 27m ago</small>
+                                                    </div>
+                                                </a>	
+                                            </li>
+                                            <li>
+                                                <a class="clearfix" href="#">
+                                                    <img src="images/profile/profile3.jpg" alt="User Avatar"/>
+                                                    <div class="detail">
+                                                        <strong>Jane Doe</strong>
+                                                        <p class="no-margin">
+                                                            Lorem ipsum dolor sit amet...
+                                                        </p>
+                                                        <small class="text-muted"><i class="fa fa-check text-success"></i> 5hr ago</small>
+                                                    </div>
+                                                </a>	
+                                            </li>
+                                            <li>
+                                                <a class="clearfix" href="#">
+                                                    <img src="images/profile/profile4.jpg" alt="User Avatar"/>
+                                                    <div class="detail m-left-sm">
+                                                        <strong>Bill Doe</strong>
+                                                        <p class="no-margin">
+                                                            Lorem ipsum dolor sit amet...
+                                                        </p>
+                                                        <small class="text-muted"><i class="fa fa-reply"></i> Yesterday</small>
+                                                    </div>
+                                                </a>	
+                                            </li>
+                                            <li>
+                                                <a class="clearfix" href="#">
+                                                    <img src="images/profile/profile5.jpg" alt="User Avatar"/>
+                                                    <div class="detail">
+                                                        <strong>Baby Doe</strong>
+                                                        <p class="no-margin">
+                                                            Lorem ipsum dolor sit amet...
+                                                        </p>
+                                                        <small class="text-muted"><i class="fa fa-reply"></i> 9 Feb 2013</small>
+                                                    </div>
+                                                </a>	
+                                            </li>
+                                            <li><a href="#">View all messages</a></li>					  
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
+                                        <span class="badge badge-info bounceIn animation-delay6 active">4</span>
+                                        <ul class="dropdown-menu notification dropdown-3 pull-right">
+                                            <li><a href="#">You have 5 new notifications</a></li>					  
+                                            <li>
+                                                <a href="#">
+                                                    <span class="notification-icon bg-warning">
+                                                        <i class="fa fa-warning"></i>
+                                                    </span>
+                                                    <span class="m-left-xs">Server #2 not responding.</span>
+                                                    <span class="time text-muted">Just now</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="notification-icon bg-success">
+                                                        <i class="fa fa-plus"></i>
+                                                    </span>
+                                                    <span class="m-left-xs">New user registration.</span>
+                                                    <span class="time text-muted">2m ago</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="notification-icon bg-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span>
+                                                    <span class="m-left-xs">Application error.</span>
+                                                    <span class="time text-muted">5m ago</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="notification-icon bg-success">
+                                                        <i class="fa fa-usd"></i>
+                                                    </span>
+                                                    <span class="m-left-xs">2 items sold.</span>
+                                                    <span class="time text-muted">1hr ago</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="notification-icon bg-success">
+                                                        <i class="fa fa-plus"></i>
+                                                    </span>
+                                                    <span class="m-left-xs">New user registration.</span>
+                                                    <span class="time text-muted">1hr ago</span>
+                                                </a>
+                                            </li>
+                                            <li><a href="#">View all notifications</a></li>					  
+                                        </ul>
+                                    </li>
+                                    <li class="chat-notification">
+                                        <a href="#" class="sidebarRight-toggle"><i class="fa fa-comments fa-lg"></i></a>
+                                        <span class="badge badge-danger bounceIn">1</span>
+
+                                        <div class="chat-alert">
+                                            Hello, Are you there?
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- ./top-nav-inner -->	
+                </header>
+                <aside class="sidebar-menu fixed">
+                    <div class="sidebar-inner scrollable-sidebar">
+                        <div class="main-menu">
+                            <ul class="accordion">
+                                <li class="menu-header">
+                                    Menu Principal
+                                </li>
+                                <li class="openable bg-palette1">
+
+                                    <a href="#">
+                                        <span class="menu-content block">
+                                            <span class="menu-icon"><i class="block fa fa-home fa-lg"></i></span>
+                                            <span class="text m-left-sm">Menu Principal</span>
+                                        </span>
+                                        <span class="menu-content-hover block">
+                                            Inicio
+                                        </span>                       
+                                    </a>
+                                    <ul class="submenu bg-palette4">
+                                        <h:form>
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Ver Estadisticas" action="#{nav.goPage('dashboard')}"/>
+                                            </li>                         
+                                        </h:form>
+                                    </ul>
+                                </li>
+                                <li class="openable bg-palette2">
+                                    <a href="#">
+                                        <span class="menu-content block">
+                                            <span class="menu-icon"><i class="block fa fa-user-md fa-lg"></i></span>
+                                            <span class="text m-left-sm">Administrador Usuarios</span>
+                                        </span>
+                                        <span class="menu-content-hover block">
+                                            Enfermeras
+                                        </span>
+                                    </a>
+                                    <ul class="submenu bg-palette4">
+                                        <h:form>
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Enfermeras" action="#{nav.goPage('EN_EnfermeraForm')}"/></li>
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Paciente" action="#{nav.goPage('EN_PacienteForm')}"/></li>
+
+                                        </h:form>
+                                    </ul>
+                                </li>
+                                <li class="openable bg-palette3">
+                                    <a href="#">
+                                        <span class="menu-content block">
+                                            <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+                                            <span class="text m-left-sm">Tipos Datos</span>
+                                            <span class="submenu-icon"></span>
+                                        </span>
+                                        <span class="menu-content-hover block">
+                                            Form
+                                        </span>
+                                    </a>
+                                    <ul class="submenu bg-palette4">
+                                        <h:form> 
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Tipo de Novedad" action="#{nav.goPage('EN_TipoNovedadForm')}"/></li>
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Tipo de Servicio" action="#{nav.goPage('EN_TipoServicioForm')}"/></li>
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Tipo de Usuario" action="#{nav.goPage('EN_TipoUsuarioForm')}"/></li>
+                                        </h:form>   
+
+                                    </ul>
+                                </li>
+                                <li class="openable bg-palette4">
+                                    <a href="#">
+                                        <span class="menu-content block">
+                                            <span class="menu-icon"><i class="block fa fa-wheelchair fa-lg"></i></span>
+                                            <span class="text m-left-sm">Registro Novedad</span>
+                                            <span class="submenu-icon"></span>
+                                        </span>
+                                        <span class="menu-content-hover block">
+                                            Novedades
+                                        </span>
+                                    </a>
+                                    <ul class="submenu">
+                                        <h:form>
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Registrar Novedad" action="#{nav.goPage('EN_ServicioForm')}"/></li>                                           
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Consultar Novedad" action="#{nav.goPage('EN_ConsultaServicio')}"/></li>                                           
+
+                                        </h:form>
+
+                                    </ul>
+                                </li>
+
+                                <li class="openable bg-palette5">
+                                    <a href="#">
+                                        <span class="menu-content block">
+                                            <span class="menu-icon"><i class="block fa fa-wheelchair fa-lg"></i></span>
+                                            <span class="text m-left-sm">Recibos</span>
+                                            <span class="submenu-icon"></span>
+                                        </span>
+                                        <span class="menu-content-hover block">
+                                            Novedades
+                                        </span>
+                                    </a>
+                                    <ul class="submenu">
+                                        <h:form>
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Registrar Servicio" action="#{nav.goPage('EN_ServicioForm')}"/></li>                                           
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Consultar Servicio" action="#{nav.goPage('EN_ConsultaServicio')}"/></li>                                           
+                                            <li><p:commandLink ajax="false" styleClass="submenu-label" value="Reporte Servicio" action="#{nav.goPage('EN_ReporteServicios')}"/></li>                                           
+
+                                        </h:form>
+
+                                    </ul>
+                                </li>
+
+
+
+                            </ul>
+                        </div>	
+                        <div class="sidebar-fix-bottom clearfix">
+                            <div class="user-dropdown dropup pull-left">
+                                <a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i class="ion-person-add"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="inbox.html">
+                                            Inbox
+                                            <span class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
+                                        </a>
+                                    </li>			  
+                                    <li>
+                                        <a href="#">
+                                            Notification
+                                            <span class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
+                                        </a>
+                                    </li>			  
+                                    <li>
+                                        <a href="#" class="sidebarRight-toggle">
+                                            Message
+                                            <span class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
+                                        </a>
+                                    </li>			  	  
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">Setting</a>
+                                    </li>			  	  
+                                </ul>
+                            </div>
+                            <div class="user-dropdown dropup pull-right">
+                            <h:form>
+                                <p:commandLink  class="pull-left font-18" styleClass="ion-log-out" action="#{nav.logout()}"/>
+                            </h:form>
+                            </div>
+                        </div>
+                    </div><!-- sidebar-inner -->
+                </aside>
+
+                <div class="main-container">
+                    <div class="padding-md">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="page-title">
+                                    <!--Menu Principal-->
+                                </div>
+                                <div class="page-sub-header">
+                                    Bienvenido  <i class="fa fa-map-marker text-danger"></i> London
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row m-top-md">
+                            <!-- CONTENIDO PRINCIPAL -->
+                            <!-- Contenido Dinamico -->
+
+                            <ui:insert name="content" >
+                                <ui:include  src="#{nav.page}.xhtml" />
+                            </ui:insert>
+                        </div>
+
+                    </div><!-- ./padding-md -->
+                </div><!-- /main-container -->
+
+                <footer class="footer">
+                    <span class="footer-brand">
+                        <strong class="text-danger">Easy</strong> Nurse
+                    </span>
+                    <p class="no-margin">
+                        &copy; 2015 <strong>Capcarde</strong>. Reservado todos los derechos. 
+                    </p>	
+                </footer>
+            </div><!-- /wrapper -->
+
+            <a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
+
+            
+            
+            
+            <!-- Le javascript
+           ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+
+            <!-- Bootstrap -->
+            <script src="#{facesContext.externalContext.requestContextPath}/bootstrap/js/bootstrap.min.js"></script>
+            <!-- Flot -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/jquery.flot.min.js'></script>
+
+            <!-- Slimscroll -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/jquery.slimscroll.min.js'></script>
+
+            <!-- Morris -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/rapheal.min.js'></script>	
+            <script src='#{facesContext.externalContext.requestContextPath}/js/morris.min.js'></script>	
+
+            <!-- Datepicker -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/uncompressed/datepicker.js'></script>
+
+            <!-- Sparkline -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/sparkline.min.js'></script>
+
+            <!-- Skycons -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/uncompressed/skycons.js'></script>
+
+            <!-- Popup Overlay -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/jquery.popupoverlay.min.js'></script>
+
+            <!-- Easy Pie Chart -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/jquery.easypiechart.min.js'></script>
+
+            <!-- Sortable -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/uncompressed/jquery.sortable.js'></script>
+
+            <!-- Owl Carousel -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/owl.carousel.min.js'></script>
+
+            <!-- Modernizr -->
+            <script src='#{facesContext.externalContext.requestContextPath}/js/modernizr.min.js'></script>
+
+            <!-- Simplify -->
+            <script src="#{facesContext.externalContext.requestContextPath}/js/simplify/simplify.js"></script>
+            <script src="#{facesContext.externalContext.requestContextPath}/js/simplify/simplify_dashboard.js"></script>
+
+            <!-- Idioma espanol Calendar -->
+            <script src="#{facesContext.externalContext.requestContextPath}/js/calendar-es.js"></script>
+
+            <script>
+                $(window).load(function () {
+                    $('#cargando').hide();
+                });
+            </script>
+            
+            
+        </h:body>
+    </f:view>
+</html>
+
+
+
+

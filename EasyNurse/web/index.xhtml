@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <meta name="description" content=""/>
+                <meta name="author" content="Camilo Pestana"/>
+                <title>Easy Nurse</title>
+
+                <h:outputStylesheet name="css/jsfcrud.css"/>
+                <!-- Bootstrap core CSS -->
+                <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+                <!-- Font Awesome -->
+                <link href="css/font-awesome.min.css" rel="stylesheet"/>
+
+                <!-- ionicons -->
+                <link href="css/ionicons.min.css" rel="stylesheet"/>
+
+                <!-- Morris -->
+                <link href="css/morris.css" rel="stylesheet"/>	
+
+                <!-- Datepicker -->
+                <link href="css/datepicker.css" rel="stylesheet"/>	
+
+                <!-- Animate -->
+                <link href="css/animate.min.css" rel="stylesheet"/>
+
+                <!-- Owl Carousel -->
+                <link href="css/owl.carousel.min.css" rel="stylesheet"/>
+                <link href="css/owl.theme.default.min.css" rel="stylesheet"/>
+
+                <!-- Simplify -->
+                <link href="css/simplify.min.css" rel="stylesheet"/>
+
+                <!-- LESS -->
+                <link rel="stylesheet/less" href="styles.less" />
+
+                
+                <style type="text/css">
+                    #cargando {
+                        width:350px;
+                        height:70px;
+                        clear:both;
+                        background-color:#FFFF00;
+                        color:#CC0000;
+                    }
+                </style>
+            </f:facet>
+        </h:head>
+        
+        <h:body>
+            <h:form>
+                <ui:composition template="#{nav.ruta}"/>
+            </h:form>
+            
+            <!-- Le javascript
+            ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+
+            <!-- Bootstrap -->
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <!-- Flot -->
+            <script src='js/jquery.flot.min.js'></script>
+
+            <!-- Slimscroll -->
+            <script src='js/jquery.slimscroll.min.js'></script>
+
+            <!-- Morris -->
+            <script src='js/rapheal.min.js'></script>	
+            <script src='js/morris.min.js'></script>	
+
+            <!-- Datepicker -->
+            <script src='js/uncompressed/datepicker.js'></script>
+
+            <!-- Sparkline -->
+            <script src='js/sparkline.min.js'></script>
+
+            <!-- Skycons -->
+            <script src='js/uncompressed/skycons.js'></script>
+
+            <!-- Popup Overlay -->
+            <script src='js/jquery.popupoverlay.min.js'></script>
+
+            <!-- Easy Pie Chart -->
+            <script src='js/jquery.easypiechart.min.js'></script>
+
+            <!-- Sortable -->
+            <script src='js/uncompressed/jquery.sortable.js'></script>
+
+            <!-- Owl Carousel -->
+            <script src='js/owl.carousel.min.js'></script>
+
+            <!-- Modernizr -->
+            <script src='js/modernizr.min.js'></script>
+
+            <!-- Simplify -->
+            <script src="js/simplify/simplify.js"></script>
+            <script src="js/simplify/simplify_dashboard.js"></script>
+
+            <!-- Idioma espanol Calendar -->
+            <script src="js/calendar-es.js"></script>
+            
+            <script>
+                    $(window).load(function () {
+                        $('#cargando').hide();
+                    });
+            </script>
+
+        </h:body>
+    </f:view>
+</html>

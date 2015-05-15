@@ -1,0 +1,129 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!--
+	PROYECTO:BootGene
+	ABREVIATURA:BG
+	DESCRIPCION:Generador codigo bootstrap
+	FORMULARIO:CampoFormulario
+	DESCRIPCION FORMULARIO:Parametros
+-->
+<f:view contentType="text/html">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css"/>
+<f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	<title>BG_CampoFormulario</title>
+</f:facet>
+</h:head>
+<h:body>
+
+<!--*******************************FORM - CREATE*******************************-->
+<h:form id="form">
+<p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+<f:facet name="header">
+	Nuevo BG_CampoFormulario
+</f:facet>
+
+<h:outputLabel for="tipodatoInput" value="Tipodato :" />
+<h:inputText id="tipodatoInput" value="#{BG_CampoFormularioModel.tipodato}" required="true"/>
+
+
+<h:outputLabel for="sqltipoInput" value="Sqltipo :" />
+<h:inputText id="sqltipoInput" value="#{BG_CampoFormularioModel.sqltipo}" required="false"/>
+
+
+<h:outputLabel for="javatipoInput" value="Javatipo :" />
+<h:inputText id="javatipoInput" value="#{BG_CampoFormularioModel.javatipo}" required="false"/>
+
+
+<h:outputLabel for="tipovalueInput" value="Tipovalue :" />
+<h:inputText id="tipovalueInput" value="#{BG_CampoFormularioModel.tipovalue}" required="false"/>
+
+</p:panelGrid>
+<p:commandButton ajax="false" update="dataTable" value="Nuevo">
+<f:actionListener binding="#{BG_CampoFormularioModel.insert()}"/>
+<f:actionListener binding="#{BG_CampoFormularioController.render()}"/>
+</p:commandButton>
+</h:form>
+<!--**************************************************************-->
+<h:form id="table">
+                     <p:dataTable id="dataTable" var="list" value="#{BG_CampoFormularioController.listBG_CampoFormulario}" style="font-size: 14px"
+                       emptyMessage="Lista Vacia"
+                       paginator="true" rows="10"
+                       scrollHeight="10"
+                       editable="true"
+                             >
+                    <f:facet name="header">
+                       BG_CampoFormulario
+                    </f:facet>
+<!--******************************** COLUMNS ***************************-->
+<p:column headerText="tipodato" filterBy="tipodato" sortBy="tipodato">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.tipodato}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.tipodato}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="sqltipo" filterBy="sqltipo" sortBy="sqltipo">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.sqltipo}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.sqltipo}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="javatipo" filterBy="javatipo" sortBy="javatipo">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.javatipo}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.javatipo}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="tipovalue" filterBy="tipovalue" sortBy="tipovalue">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.tipovalue}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.tipovalue}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+
+<p:column headerText="Editar">
+                            <p:rowEditor/>   
+                        </p:column>
+                        <p:column headerText="Eliminar">
+                            <p:commandButton ajax="false" update="@this" icon="ui-icon-close">
+                                <f:setPropertyActionListener value="#{list}" target="#{BG_CampoFormularioController.selected}" />
+                                <f:actionListener binding="#{BG_CampoFormularioController.delete()}"/>
+                                <f:actionListener binding="#{BG_CampoFormularioController.render()}"/>
+                            </p:commandButton>
+                        </p:column><!-- AJAX-->
+                        <p:ajax event="rowEdit"  listener="#{BG_CampoFormularioController.onEdit}"/>
+                        <p:ajax event="rowEditCancel" listener="#{BG_CampoFormularioController.onCancel}"/>
+
+                        <f:facet name="footer">
+                            En total hay  <h:outputText value="#{BG_CampoFormularioController.size}"/> BG_CampoFormulario(s).
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+
+
+</h:body>
+</f:view>
+</html>

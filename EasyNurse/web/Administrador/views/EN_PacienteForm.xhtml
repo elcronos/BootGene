@@ -1,0 +1,133 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <!--
+            PROYECTO:EasyNurse
+            ABREVIATURA:EN
+            DESCRIPCION:EasyNurse
+            FORMULARIO:Paciente
+            DESCRIPCION FORMULARIO:Información Básica del Paciente
+    -->
+    <f:view contentType="text/html">
+        <h:head>
+
+            <f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Paciente</title>
+            </f:facet>
+            
+        </h:head>
+        <h:body>
+           
+            <!--*******************************FORM - CREATE*******************************-->
+            <h:form id="form">
+                <p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+                    <f:facet name="header">
+                        Nuevo Paciente
+                    </f:facet>
+
+                    <h:outputLabel for="nombreCompleInput" value="Nombre Completo:" />
+                    <h:inputText id="nombreCompleInput" value="#{EN_PacienteModel.nombrecomple}" required="true"/>
+
+
+                    <h:outputLabel for="numeDocuInput" value="Numero Documento:" />
+                    <h:inputText id="numeDocuInput" value="#{EN_PacienteModel.numedocu}" required="true"/>
+
+
+                    <h:outputLabel for="fechNaciInput" value="Fecha Nacimiento:" />
+                    <p:calendar mask="99/99/9999" navigator="true" locale="es" pattern="dd/MM/yyyy" id="fechNaciInput" value="#{EN_PacienteModel.fechnaci}" required="true"/>
+
+                </p:panelGrid>
+
+                <p:commandButton style="color: white" class="btn btn-primary btn-stroke btn-xs"  ajax="false" update="dataTable" value="Nuevo Paciente">
+                    <f:actionListener binding="#{EN_PacienteModel.insert()}"/>
+                    <f:actionListener binding="#{EN_PacienteController.render()}"/>
+
+                </p:commandButton>
+
+            </h:form>
+
+
+            <!--**************************************************************-->
+
+            <div class="heading-buttons border-bottom innerLR">
+                <h4 class="margin-none innerTB pull-left">Lista Pacientes</h4>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="bg-white border-bottom innerAll">
+                <div class="input-group input-group-sm">
+
+
+                    <h:form id="form1">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Nombre <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Nombre</a></li>
+                                            <li><a href="#">Nit o C.C</a></li>
+                                            <li><a href="#">Fecha Nacimiento</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p:inputText class="form-control" value="#{EN_PacienteController.nombBusq}" placeholder="Paciente ..." />
+
+                                </td>
+                                <td>
+                                    <p:commandButton id="cmb" value="Buscar" update="componenteLista" style="color: white" class="pull-right btn btn-primary btn-stroke btn-xs">
+                                        <f:actionListener binding="#{EN_PacienteController.buscaPaciente()}"/>
+                                    </p:commandButton>
+                                    <p:blockUI block="cmb" trigger="cmb">
+                                        Buscando Paciente...<br />
+                                    </p:blockUI>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </div>
+            </div>
+
+            <ul class="list-group list-group-1 borders-none margin-none">
+                <h:panelGroup id="componenteLista">
+                <h:form id="form2" rendered="true">
+                <ui:repeat id="lista"  value="#{EN_PacienteController.listEN_Paciente}" var="paciente">
+                    <li class="list-group-item">
+                        <div class="media innerAll">
+                            
+
+                            <p:commandButton  value="Consultar" ajax="false" style="color: white" class="pull-right btn btn-primary btn-stroke btn-xs" >
+
+                                    <f:setPropertyActionListener value="#{paciente}" target="#{EN_PacienteController.selected}" />
+                                    <f:actionListener binding="#{nav.goPage('EN_PacienteInfo')}"/>
+
+                                </p:commandButton>
+
+                            
+
+                            <div class="media-body">
+                                <h5 class="media-heading strong"><h:outputText value="#{paciente.nombrecomple.toUpperCase()}"/></h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-user"></i> <h:outputText value="#{paciente.numedocu}"/></li>
+                                    <li><i class="fa fa-calendar"></i> <h:outputText value="#{paciente.fechnaci}"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ui:repeat>
+                </h:form>
+                </h:panelGroup>
+
+
+            </ul>
+            <!-- // END PATIENTS LIST -->
+
+
+        </h:body>
+    </f:view>
+</html>

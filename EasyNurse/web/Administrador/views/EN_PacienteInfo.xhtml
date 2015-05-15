@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <body>
+        <div class="bg-white border-bottom innerAll">
+            <table>
+                <tr>
+                    <td>
+                        <h:form>
+                            <p:commandButton style="color: white" class="pull-left btn btn-primary btn-stroke btn-xs" ajax="false" value="Volver" actionListener="#{nav.goBack()}"/>
+                        </h:form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:form>
+                            <!-- PATIENT OVERVIEW START -->
+
+                            <div class="media">
+                                <button class="pull-right btn btn-default btn-sm"><i class="fa fa-fw fa-edit"></i> Modificar</button>
+                                <div class="media-body innerAll half">
+                                    <h4 class="media-heading text-large">
+                                        <h:outputText value="#{EN_PacienteController.selected.nombrecomple.toUpperCase()}"/>
+                                    </h4>
+                                    <p>Fecha de Nacimiento: <h:outputText value="#{EN_PacienteController.edad}"/>
+
+                                        <br/>Numero Identificacion:<h:outputText value="#{EN_PacienteController.selected.numedocu}"/>
+                                        <br/>Paciente No. <h:outputText value="#{EN_PacienteController.selected.id}"/></p>
+                                </div>
+                            </div>
+
+                            <!-- // END PATIENT OVERVIEW -->
+                        </h:form>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </body>
+</html>

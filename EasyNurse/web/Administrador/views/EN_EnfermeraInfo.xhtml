@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <body>
+        <div class="bg-white border-bottom innerAll">
+        <table>
+            <tr>
+                <td>
+                    <h:form>
+                        <p:commandButton style="color: white" class="pull-left btn btn-primary btn-stroke btn-xs" ajax="false" value="Volver" actionListener="#{nav.goBack()}"/>
+                    </h:form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:form>
+                        <!-- ENFERMERA OVERVIEW START -->
+                        
+                            <div class="media">
+                                <button class="pull-right btn btn-default btn-sm"><i class="fa fa-fw fa-edit"></i> Modificar</button>
+                                <div class="media-body innerAll half">
+                                    <h4 class="media-heading text-large">
+                                        <h:outputText value="#{EN_EnfermeraController.selected.nombrecomple.toUpperCase()}"/>
+                                    </h4>
+                                        <p>Fecha de Nacimiento: <h:outputText value="#{EN_EnfermeraController.edad}"/>
+
+                                        <br/>Numero Identificacion:<h:outputText value="#{EN_EnfermeraController.selected.numedocu}"/>
+                                        <br/>Paciente No. <h:outputText value="#{EN_EnfermeraController.selected.id}"/>
+                                        <br/>Telefono <h:outputText value="#{EN_EnfermeraController.selected.numecelu}"/></p>
+                                </div>
+                            </div>
+                        
+                        <!-- // END ENFERMERA OVERVIEW -->
+                    </h:form>
+                </td>
+            </tr>
+
+        </table>
+       </div>
+    </body>
+</html>

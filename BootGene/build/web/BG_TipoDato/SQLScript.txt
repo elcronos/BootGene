@@ -1,0 +1,41 @@
+------------------------------------------------------------------------------------------------
+--		Generado Automaticamente por MPDF(MetaProgrammingFaces)
+--		Dia: 6	Mes: 19	Año :2015
+------------------------------------------------------------------------------------------------
+
+--Drop Table BG_TipoDato;
+
+-- Tabla : BG_TipoDato
+
+		Create Table BG_TipoDato (
+			IDTIPODATO Number(10) NOT NULL,
+			TIPODATO VarChar2(80) NOT NULL,
+			SQLTIPO VarChar2(80) NULL,
+			JAVATIPO VarChar2(80) NULL,
+			TIPOVALUE VarChar2(80) NULL
+		);
+
+------------------------------------------------------------------------------------------------
+-- Llave primaria para BG_TipoDato (idtipodato)
+------------------------------------------------------------------------------------------------
+
+	Alter Table BG_TipoDato ADD Constraint Pidtipodato Primary Key (idtipodato);
+
+	
+
+------------------------------------------------------------------------------------------------
+
+	Create Sequence SEC_BG_TipoDato INCREMENT BY 1 START WITH 10 MAXVALUE 1.0E28
+	MINVALUE 1 NOCYCLE  CACHE 20 NOORDER;
+
+------------------------------------------------------------------------------------------------
+-- TRIGGER para BG_TipoDato (idtipodato)
+------------------------------------------------------------------------------------------------
+
+	CREATE OR REPLACE TRIGGER TRG_BG_TipoDato_INSERT BEFORE INSERT ON BG_TipoDato
+	FOR EACH ROW
+	BEGIN
+		If :New.idtipodato = 0 Then
+			Select SEC_BG_TipoDato.NextVal Into :New.idtipodato From Dual;
+		End If;
+	END;
