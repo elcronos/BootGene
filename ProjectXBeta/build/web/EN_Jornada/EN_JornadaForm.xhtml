@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!--
+	PROYECTO:EasyNurse
+	ABREVIATURA:EN
+	DESCRIPCION:EasyNurse
+	FORMULARIO:Jornada
+	DESCRIPCION FORMULARIO:Jornada Descripción
+-->
+<f:view contentType="text/html">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css"/>
+<f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	<title>EN_Jornada</title>
+</f:facet>
+</h:head>
+<h:body>
+
+<!--*******************************FORM - CREATE*******************************-->
+<h:form id="form">
+<p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+<f:facet name="header">
+	Nuevo EN_Jornada
+</f:facet>
+
+<h:outputLabel for="jornadaInput" value="Jornada :" />
+<h:inputText id="jornadaInput" value="#{EN_JornadaModel.jornada}" required="true"/>
+
+
+<h:outputLabel for="valorInput" value="Valor :" />
+<h:inputText id="valorInput" value="#{EN_JornadaModel.valor}" required="true"/>
+
+
+<h:outputLabel for="pagoInput" value="Pago :" />
+<h:inputText id="pagoInput" value="#{EN_JornadaModel.pago}" required="true"/>
+
+</p:panelGrid>
+<p:commandButton ajax="false" update="dataTable" value="Nuevo">
+<f:actionListener binding="#{EN_JornadaModel.insert()}"/>
+<f:actionListener binding="#{EN_JornadaController.render()}"/>
+</p:commandButton>
+</h:form>
+<!--**************************************************************-->
+<h:form id="table">
+                     <p:dataTable id="dataTable" var="list" value="#{EN_JornadaController.listEN_Jornada}" style="font-size: 14px"
+                       emptyMessage="Lista Vacia"
+                       paginator="true" rows="10"
+                       scrollHeight="10"
+                       editable="true"
+                             >
+                    <f:facet name="header">
+                       EN_Jornada
+                    </f:facet>
+<!--******************************** COLUMNS ***************************-->
+<p:column headerText="jornada" filterBy="jornada" sortBy="jornada">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.jornada}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.jornada}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="valor" filterBy="valor" sortBy="valor">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.valor}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.valor}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="pago" filterBy="pago" sortBy="pago">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.pago}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.pago}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+
+<p:column headerText="Editar">
+                            <p:rowEditor/>   
+                        </p:column>
+                        <p:column headerText="Eliminar">
+                            <p:commandButton ajax="false" update="@this" icon="ui-icon-close">
+                                <f:setPropertyActionListener value="#{list}" target="#{EN_JornadaController.selected}" />
+                                <f:actionListener binding="#{EN_JornadaController.delete()}"/>
+                                <f:actionListener binding="#{EN_JornadaController.render()}"/>
+                            </p:commandButton>
+                        </p:column><!-- AJAX-->
+                        <p:ajax event="rowEdit"  listener="#{EN_JornadaController.onEdit}"/>
+                        <p:ajax event="rowEditCancel" listener="#{EN_JornadaController.onCancel}"/>
+
+                        <f:facet name="footer">
+                            En total hay  <h:outputText value="#{EN_JornadaController.size}"/> EN_Jornada(s).
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+
+
+</h:body>
+</f:view>
+</html>

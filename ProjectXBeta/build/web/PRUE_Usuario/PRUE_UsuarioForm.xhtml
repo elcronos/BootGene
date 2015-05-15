@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!--
+	PROYECTO:Prueba
+	ABREVIATURA:PRUE
+	DESCRIPCION:Prueba
+	FORMULARIO:Usuario
+	DESCRIPCION FORMULARIO:iouasiodas
+-->
+<f:view contentType="text/html">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css"/>
+<f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	<title>PRUE_Usuario</title>
+</f:facet>
+</h:head>
+<h:body>
+
+<!--*******************************FORM - CREATE*******************************-->
+<h:form id="form">
+<p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+<f:facet name="header">
+	Nuevo PRUE_Usuario
+</f:facet>
+
+<h:outputLabel for="nombreInput" value="Nombre :" />
+<h:inputText id="nombreInput" value="#{PRUE_UsuarioModel.nombre}" required="true"/>
+
+
+<h:outputLabel for="direccionInput" value="Direccion :" />
+<h:inputTextarea id="direccionInput" value="#{PRUE_UsuarioModel.direccion}" required="false"/>
+
+</p:panelGrid>
+<p:commandButton ajax="false" update="dataTable" value="Nuevo">
+<f:actionListener binding="#{PRUE_UsuarioModel.insert()}"/>
+<f:actionListener binding="#{PRUE_UsuarioController.render()}"/>
+</p:commandButton>
+</h:form>
+<!--**************************************************************-->
+<h:form id="table">
+                     <p:dataTable id="dataTable" var="list" value="#{PRUE_UsuarioController.listPRUE_Usuario}" style="font-size: 14px"
+                       emptyMessage="Lista Vacia"
+                       paginator="true" rows="10"
+                       scrollHeight="10"
+                       editable="true"
+                             >
+                    <f:facet name="header">
+                       PRUE_Usuario
+                    </f:facet>
+<!--******************************** COLUMNS ***************************-->
+<p:column headerText="nombre" filterBy="nombre" sortBy="nombre">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.nombre}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.nombre}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="direccion" filterBy="direccion" sortBy="direccion">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.direccion}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputTextarea value="#{list.direccion}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+
+<p:column headerText="Editar">
+                            <p:rowEditor/>   
+                        </p:column>
+                        <p:column headerText="Eliminar">
+                            <p:commandButton ajax="false" update="@this" icon="ui-icon-close">
+                                <f:setPropertyActionListener value="#{list}" target="#{PRUE_UsuarioController.selected}" />
+                                <f:actionListener binding="#{PRUE_UsuarioController.delete()}"/>
+                                <f:actionListener binding="#{PRUE_UsuarioController.render()}"/>
+                            </p:commandButton>
+                        </p:column><!-- AJAX-->
+                        <p:ajax event="rowEdit"  listener="#{PRUE_UsuarioController.onEdit}"/>
+                        <p:ajax event="rowEditCancel" listener="#{PRUE_UsuarioController.onCancel}"/>
+
+                        <f:facet name="footer">
+                            En total hay  <h:outputText value="#{PRUE_UsuarioController.size}"/> PRUE_Usuario(s).
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+
+
+</h:body>
+</f:view>
+</html>

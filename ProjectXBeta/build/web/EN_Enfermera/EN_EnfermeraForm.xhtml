@@ -1,0 +1,212 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!--
+	PROYECTO:EasyNurse
+	ABREVIATURA:EN
+	DESCRIPCION:EasyNurse
+	FORMULARIO:Enfermera
+	DESCRIPCION FORMULARIO:Información de la Enfermera o Auxiliar.
+
+Incluyendo información como:
+
+-Número de Cuenta Bancaria
+-Nombre del Banco
+-Tipo Cuenta(Ahorro/Corriente)
+-Ciudad
+-Fecha de Operación
+-->
+<f:view contentType="text/html">
+<h:head>
+	<h:outputStylesheet library="css" name="style.css"/>
+<f:facet name="form"><meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+	<title>EN_Enfermera</title>
+</f:facet>
+</h:head>
+<h:body>
+
+<!--*******************************FORM - CREATE*******************************-->
+<h:form id="form">
+<p:panelGrid id="grd" columns="2" style="font-size: 10px;" rendered="true">
+<f:facet name="header">
+	Nuevo EN_Enfermera
+</f:facet>
+
+<h:outputLabel for="nombreCompleInput" value="Nombrecomple :" />
+<h:inputText id="nombreCompleInput" value="#{EN_EnfermeraModel.nombreComple}" required="true"/>
+
+
+<h:outputLabel for="numeDocuInput" value="Numedocu :" />
+<h:inputText id="numeDocuInput" value="#{EN_EnfermeraModel.numeDocu}" required="true"/>
+
+
+<h:outputLabel for="ciudadInput" value="Ciudad :" />
+<h:inputText id="ciudadInput" value="#{EN_EnfermeraModel.ciudad}" required="true"/>
+
+
+<h:outputLabel for="fechaInput" value="Fecha :" />
+<h:date id="fechaInput" value="#{EN_EnfermeraModel.fecha}" required="true"/>
+
+
+<h:outputLabel for="numeCeluInput" value="Numecelu :" />
+<h:inputText id="numeCeluInput" value="#{EN_EnfermeraModel.numeCelu}" required="false"/>
+
+
+<h:outputLabel for="correoInput" value="Correo :" />
+<h:inputText id="correoInput" value="#{EN_EnfermeraModel.correo}" required="false"/>
+
+
+<h:outputLabel for="nombBancInput" value="Nombbanc :" />
+<h:inputText id="nombBancInput" value="#{EN_EnfermeraModel.nombBanc}" required="false"/>
+
+
+<h:outputLabel for="tipoCuentaInput" value="Tipocuenta :" />
+<h:inputText id="tipoCuentaInput" value="#{EN_EnfermeraModel.tipoCuenta}" required="false"/>
+
+
+<h:outputLabel for="numeroCuentaInput" value="Numerocuenta :" />
+<h:inputText id="numeroCuentaInput" value="#{EN_EnfermeraModel.numeroCuenta}" required="false"/>
+
+</p:panelGrid>
+<p:commandButton ajax="false" update="dataTable" value="Nuevo">
+<f:actionListener binding="#{EN_EnfermeraModel.insert()}"/>
+<f:actionListener binding="#{EN_EnfermeraController.render()}"/>
+</p:commandButton>
+</h:form>
+<!--**************************************************************-->
+<h:form id="table">
+                     <p:dataTable id="dataTable" var="list" value="#{EN_EnfermeraController.listEN_Enfermera}" style="font-size: 14px"
+                       emptyMessage="Lista Vacia"
+                       paginator="true" rows="10"
+                       scrollHeight="10"
+                       editable="true"
+                             >
+                    <f:facet name="header">
+                       EN_Enfermera
+                    </f:facet>
+<!--******************************** COLUMNS ***************************-->
+<p:column headerText="nombreComple" filterBy="nombreComple" sortBy="nombreComple">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.nombreComple}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.nombreComple}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="numeDocu" filterBy="numeDocu" sortBy="numeDocu">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.numeDocu}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.numeDocu}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="ciudad" filterBy="ciudad" sortBy="ciudad">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.ciudad}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.ciudad}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="fecha" filterBy="fecha" sortBy="fecha">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.fecha}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:date value="#{list.fecha}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="numeCelu" filterBy="numeCelu" sortBy="numeCelu">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.numeCelu}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.numeCelu}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="correo" filterBy="correo" sortBy="correo">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.correo}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.correo}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="nombBanc" filterBy="nombBanc" sortBy="nombBanc">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.nombBanc}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.nombBanc}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="tipoCuenta" filterBy="tipoCuenta" sortBy="tipoCuenta">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.tipoCuenta}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.tipoCuenta}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+<p:column headerText="numeroCuenta" filterBy="numeroCuenta" sortBy="numeroCuenta">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{list.numeroCuenta}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{list.numeroCuenta}" />
+                                </f:facet>
+                            </p:cellEditor>
+</p:column>
+
+
+<p:column headerText="Editar">
+                            <p:rowEditor/>   
+                        </p:column>
+                        <p:column headerText="Eliminar">
+                            <p:commandButton ajax="false" update="@this" icon="ui-icon-close">
+                                <f:setPropertyActionListener value="#{list}" target="#{EN_EnfermeraController.selected}" />
+                                <f:actionListener binding="#{EN_EnfermeraController.delete()}"/>
+                                <f:actionListener binding="#{EN_EnfermeraController.render()}"/>
+                            </p:commandButton>
+                        </p:column><!-- AJAX-->
+                        <p:ajax event="rowEdit"  listener="#{EN_EnfermeraController.onEdit}"/>
+                        <p:ajax event="rowEditCancel" listener="#{EN_EnfermeraController.onCancel}"/>
+
+                        <f:facet name="footer">
+                            En total hay  <h:outputText value="#{EN_EnfermeraController.size}"/> EN_Enfermera(s).
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+
+
+</h:body>
+</f:view>
+</html>

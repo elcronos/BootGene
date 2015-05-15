@@ -1,0 +1,39 @@
+------------------------------------------------------------------------------------------------
+--		Generado Automaticamente por MPDF(MetaProgrammingFaces)
+--		Dia: 21	Mes: 17	Año :2015
+------------------------------------------------------------------------------------------------
+
+--Drop Table PRUE_Usuario;
+
+-- Tabla : PRUE_Usuario
+
+		Create Table PRUE_Usuario (
+			ID Number(10) NOT NULL,
+			NOMBRE VarChar2(80) NOT NULL,
+			DIRECCION VarChar2(250) NULL
+		);
+
+------------------------------------------------------------------------------------------------
+-- Llave primaria para PRUE_Usuario (id)
+------------------------------------------------------------------------------------------------
+
+	Alter Table PRUE_Usuario ADD Constraint Pid Primary Key (id);
+
+	
+
+------------------------------------------------------------------------------------------------
+
+	Create Sequence SEC_PRUE_Usuario INCREMENT BY 1 START WITH 10 MAXVALUE 1.0E28
+	MINVALUE 1 NOCYCLE  CACHE 20 NOORDER;
+
+------------------------------------------------------------------------------------------------
+-- TRIGGER para PRUE_Usuario (id)
+------------------------------------------------------------------------------------------------
+
+	CREATE OR REPLACE TRIGGER TRG_PRUE_Usuario_INSERT BEFORE INSERT ON PRUE_Usuario
+	FOR EACH ROW
+	BEGIN
+		If :New.id = 0 Then
+			Select SEC_PRUE_Usuario.NextVal Into :New.id From Dual;
+		End If;
+	END;

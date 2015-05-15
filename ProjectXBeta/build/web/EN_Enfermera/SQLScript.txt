@@ -1,0 +1,46 @@
+------------------------------------------------------------------------------------------------
+--		Generado Automaticamente por MPDF(MetaProgrammingFaces)
+--		Dia: 21	Mes: 17	Año :2015
+------------------------------------------------------------------------------------------------
+
+--Drop Table EN_Enfermera;
+
+-- Tabla : EN_Enfermera
+
+		Create Table EN_Enfermera (
+			ID Number(10) NOT NULL,
+			NOMBRECOMPLE VarChar2(80) NOT NULL,
+			NUMEDOCU VarChar2(80) NOT NULL,
+			CIUDAD VarChar2(80) NOT NULL,
+			FECHA Date NOT NULL,
+			NUMECELU VarChar2(80) NULL,
+			CORREO VarChar2(80) NULL,
+			NOMBBANC VarChar2(80) NULL,
+			TIPOCUENTA VarChar2(80) NULL,
+			NUMEROCUENTA VarChar2(80) NULL
+		);
+
+------------------------------------------------------------------------------------------------
+-- Llave primaria para EN_Enfermera (id)
+------------------------------------------------------------------------------------------------
+
+	Alter Table EN_Enfermera ADD Constraint Pid Primary Key (id);
+
+	
+
+------------------------------------------------------------------------------------------------
+
+	Create Sequence SEC_EN_Enfermera INCREMENT BY 1 START WITH 10 MAXVALUE 1.0E28
+	MINVALUE 1 NOCYCLE  CACHE 20 NOORDER;
+
+------------------------------------------------------------------------------------------------
+-- TRIGGER para EN_Enfermera (id)
+------------------------------------------------------------------------------------------------
+
+	CREATE OR REPLACE TRIGGER TRG_EN_Enfermera_INSERT BEFORE INSERT ON EN_Enfermera
+	FOR EACH ROW
+	BEGIN
+		If :New.id = 0 Then
+			Select SEC_EN_Enfermera.NextVal Into :New.id From Dual;
+		End If;
+	END;

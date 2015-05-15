@@ -1,0 +1,40 @@
+------------------------------------------------------------------------------------------------
+--		Generado Automaticamente por MPDF(MetaProgrammingFaces)
+--		Dia: 19	Mes: 16	Año :2015
+------------------------------------------------------------------------------------------------
+
+--Drop Table EN_Jornada;
+
+-- Tabla : EN_Jornada
+
+		Create Table EN_Jornada (
+			ID Number(10) NOT NULL,
+			JORNADA VarChar2(80) NOT NULL,
+			VALOR Number(10) NOT NULL,
+			PAGO Number(10) NOT NULL
+		);
+
+------------------------------------------------------------------------------------------------
+-- Llave primaria para EN_Jornada (id)
+------------------------------------------------------------------------------------------------
+
+	Alter Table EN_Jornada ADD Constraint Pid Primary Key (id);
+
+	
+
+------------------------------------------------------------------------------------------------
+
+	Create Sequence SEC_EN_Jornada INCREMENT BY 1 START WITH 10 MAXVALUE 1.0E28
+	MINVALUE 1 NOCYCLE  CACHE 20 NOORDER;
+
+------------------------------------------------------------------------------------------------
+-- TRIGGER para EN_Jornada (id)
+------------------------------------------------------------------------------------------------
+
+	CREATE OR REPLACE TRIGGER TRG_EN_Jornada_INSERT BEFORE INSERT ON EN_Jornada
+	FOR EACH ROW
+	BEGIN
+		If :New.id = 0 Then
+			Select SEC_EN_Jornada.NextVal Into :New.id From Dual;
+		End If;
+	END;
